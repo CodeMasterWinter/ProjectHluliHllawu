@@ -1,0 +1,63 @@
+<div>
+    {% if messages %}
+        {% for message in messages %}
+            <div class="alert alert-{{ message.tags }}">
+                <i class="fa-solid fa-circle-info"></i>
+                {{ message }}
+            </div>
+        {% endfor %}
+    {% endif %}
+    <div class="shop-product">
+        {% for product in products %}
+            <div class="shop-product-image">
+                <img src="{{product.thumbnail.url}}" alt="" class="product-image">
+            </div>
+            <div class="product-details">
+                <h3 class="product-title">{{product.name}}</h3>
+                <p class="product-category">
+                    Category: <span>{{ product.get_product_key_display }}</span>
+                </p>
+                <hr class="shop-divider">
+                <p class="product-description">
+                    {{product.description}}
+                </p>
+                <h3 class="product-price">
+                    R{{product.price}}
+                </h3>
+                <div class="cake_parameters">
+                    <form action="" method="post">
+                        <div class="param-box">
+                            <!--
+                            <label class="categories-label" for="id_size">Customize Size:</label>
+                            <select name="size" id="id_size">
+                                <option value="S">Small</option>                         
+                                <option value="M" selected="">Medium</option>                         
+                                <option value="L">Large</option>                         
+                                <option value="P">Party</option>                         
+                            </select>
+                            -->
+                        </div>
+                        <div class="param-box">
+                            <label class="categories-label" for="id_flavour">Customize Sponge Flavor:</label>
+                            <select name="flavour" id="id_flavour">
+                                <option value="V" selected="">Vanilla</option>                         
+                                <option value="C">Chocolate</option>                         
+                                <option value="U">Non-Customizable</option>                         
+                            </select>
+                        </div>
+                    </form>
+                    
+                </div>
+                <div class="quantity-count">
+                    <p class="btn" unicorn:click="decrement()">-</p>
+                    <p class="item-quantity">{{get_items}}</p>
+                    <button class="btn" unicorn:click="increment()">+</button>     
+                </div>
+                <div class="shop-cart">
+                    <a class="cart-now" unicorn:click="add_item({{product.pk}})">Add to cart</a>
+                    <a class="buy-now" href="#">Buy Now</a>
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+</div>

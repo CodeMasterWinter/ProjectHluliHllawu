@@ -1,0 +1,9 @@
+.idea/
+hlulihlawu/__pycache__/
+virtual/
+venv/
+db.sqlite3
+hlulihlawu/migrations/__pycache__/
+hlulihlawu/migrations
+projectmthimkhulu/__pycache__/
+quotations and invoices/

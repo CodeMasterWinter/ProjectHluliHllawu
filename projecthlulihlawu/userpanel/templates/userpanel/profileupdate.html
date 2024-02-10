@@ -1,0 +1,31 @@
+{% extends 'userpanel\profile.html' %}
+
+{% block bodycontent %}
+<div class="bodycontent">
+    <div class="sitebar">
+        <a href="{% url 'infoupdate' %}" class="site-header" id="user-header">Update User Info</a>
+        <a href="{% url 'contactupdate' %}" class="site-header" id="contact-header">Update Contact Details</a>
+        <a href="#cart" class="site-header" id="cart-header">Manage cart</a>
+        <a href="{% url 'profileupdate' %}" class="site-header  active-header" id="profile-picture-header">Update Profile Picture</a>
+    </div>
+    <div class="pages">
+        <div class="page-content">
+            <p class="page-content-title">User Information</p>
+            <div class="page-content-block">
+                <div class="user-data-section">
+                    <hr class="content-divider">
+                    <div class="user-data-block">
+                        <form action="" method="post" enctype="multipart/form-data">
+                            {% csrf_token %}
+                            <label for="id_profile_picture" class="data-label">{{ profileform.profile_picture.label }}</label>
+                            <input type="file" class="user-data" name="profile_picture" id="id_profile_picture">
+                            <button type="submit" class="user-data-save">Save</button>
+                        </form>
+                    </div>
+                    <hr class="content-divider">
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock bodycontent %}

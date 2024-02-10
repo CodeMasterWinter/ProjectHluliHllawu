@@ -1,0 +1,124 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://kit.fontawesome.com/ee5d0e9048.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="{% static 'userpanel/profile.css' %}">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@200;300;400;500;600;700&display=swap" rel="stylesheet"> 
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;500;700&display=swap" rel="stylesheet"> 
+    <link href="https://fonts.googleapis.com/css2?family=Courgette&display=swap" rel="stylesheet">
+    <link rel="shortcut icon" type="image/jpg" href="{% static 'userpanel/img/hlulihlawubrand/icons/favicon-32x32.png' %}"/>
+    <title>{{ page_title }} - HluliHlawu</title>
+</head>
+<body>
+    <div class="navbar">
+        <div class="navbar-left">
+            <nav>
+                <ul class="nav-list">
+                    <li class="nav-list-item">
+                        <a class="nav-link active-nav-link" href="{% url 'landing_home' %}">Home</a>
+                    </li>
+                    <li class="nav-list-item">
+                        <a class="nav-link" href="{% url 'shop' %}">Products</a>
+                        <ul class="product-dropdown dropdown">
+                            <li class="product-item">
+                                <a class="product-link" name="cakes" href="{% url 'shop-cakes' %}">Our Cakes</a>
+                            </li>
+                            <li class="product-item">
+                                <a class="product-link" name="cupcakes" href="{% url 'shop-cupcakes' %}">Our Cupcakes</a>
+                            </li>
+                            <li class="product-item">
+                                <a class="product-link" name="cookies" href="{% url 'shop-cookies' %}">Our Cookies</a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li class="nav-list-item">
+                        <a class="nav-link" href="#">Services</a>
+                        <ul class="services-dropdown dropdown">
+                            <li class="product-item">
+                                <a class="product-link" href="{% url 'event-catering' %}">Event Catering</a>
+                            </li>
+                            <li class="product-item">
+                                <a class="product-link" href="{% url 'business-catering' %}">Business Catering</a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li class="nav-list-item">
+                        <a class="nav-link" href="{% url 'contact' %}">Contact</a>
+                    </li>
+                    <li class="nav-list-item">
+                        <a class="nav-link nav-shop" href="{% url 'shop' %}">Shop</a>
+                        <ul class="shop-dropdown dropdown">
+                            <li class="product-item">
+                                <a class="product-link" name="cakes" href="{% url 'shop-cakes' %}">Cake</a>
+                            </li>
+                            <li class="product-item">
+                                <a class="product-link" name="cupcakes" href="{% url 'shop-cupcakes' %}">Cupcakes</a>
+                            </li>
+                            <li class="product-item">
+                                <a class="product-link" name="cookies" href="{% url 'shop-cookies' %}">Cookies</a>
+                            </li>
+                        </ul>
+                    </li>
+                </ul>
+            </nav>
+        </div>
+        <a href="#" class="toggle-button">
+            <i class="fa-solid fa-bars"></i>
+        </a>
+        <div class="logo-block">
+            <a href="{% url 'landing_home' %}" class="logo"><img src="{% static 'hlulihlawu/img/hlulihlawubrand/hlulihlawu-transparent.png' %}" alt="HluliHlawu Company Logo" class="logo"></a>
+        </div>
+        <div class="navbar-right">
+            <div class="nav-buttons">
+                <a href="{% url 'cart' %}" class="nav-icons"><i class="fa-solid fa-cart-shopping fa-lg"></i></a>
+                {% if user.is_authenticated %}
+                    <a href="{% url 'profile' %}" class="nav-icons"><i class="fa-solid fa-user fa-lg"></i></a>
+                    <a href="{% url 'logout' %}" class="nav-auth logout"><i class="fa-solid fa-right-from-bracket"></i></a>
+                {% else %}
+                    <i class="fa-solid fa-user fa-lg">
+                        <ul class="auth-actions">
+                            <li class="auth-action-item">
+                                <a href="{% url 'login' %}" class="nav-auth">Log In</a>
+                            </li>
+                            <li class="auth-action-item">
+                                <a href="{% url 'sign_up' %}" class="nav-auth">Sign Up</a>
+                            </li>
+                        </ul>
+                    </i>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+    <header>
+        <div class="profile-header">
+            <div class="profile-header-info">
+                <p class="profile-title">
+                    {{ user.first_name }} {{ user.last_name }}
+                </p>
+                <p class="profile-user">
+                    {{ user.username }}
+                </p>
+            </div>
+        </div>
+    </header>
+    {% if messages %}
+            {% for message in messages %}
+                <div class="messages">
+                    <i class="fa-solid message-icon fa-circle-info"></i>
+                    {{ message }}
+                </div>
+            {% endfor %}
+        {% endif %}
+    {% block bodycontent %}
+    {% endblock bodycontent %}
+</body>
+</html>

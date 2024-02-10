@@ -1,0 +1,64 @@
+<div class="cart-summary">
+    {% if messages %}
+        {% for message in messages %}
+            <div class="alert alert-{{ message.tags }}">
+                <i class="fa-solid fa-circle-info"></i>
+                {{ message }}
+            </div>
+        {% endfor %}
+    {% endif %}
+    <div class="cart-nav-buttons">
+        <a href="{% url 'shop' %}" class="continue-shopping cart-nav-button">Continue Shopping</a>
+        <button class="checkout cart-nav-button" unicorn:click="create_order()">Checkout</button>
+    </div>
+    <div class="cart-totals">
+        <p class="total-items">Items in cart: {{get_items}}</p>
+        <p class="total-items">Cart Total: <span>R{{ total }}</span></p>
+    </div>
+    <div class="cart-content">
+        {% if out_orders %}
+            <div class="orders">
+                <h5 class="orders-title">Waiting for checkout</h5>
+                <div class="order-list">    
+                    {% for order in out_orders %}
+                        <div class="order-items">
+                            <p class="order-name">{{order.name}}</p>
+                            <div class="order-nav-buttons">
+                                <a href="{% url 'order' order.transaction_id %}" class="go-to-order order-nav-button">Show Me</a>
+                            </div>
+                        </div>
+                    {% endfor %}
+                </div>
+            </div>
+        {% endif %}
+        <div class="cart-items">
+            {% if user_products %}
+                {% for product in user_products %}
+                    <div class="cart-item">
+                        <div class="item-thumbnail">
+                            <img src="{{product.product.thumbnail.url}}" alt="" class="cart-item-thumbnail">
+                        </div>
+                        <p class="item-name item-detail">{{product.product}}</p>
+                        <p class="item-price item-detail">R{{product.product.price}}</p>
+                        <div class="quantity-count">
+                            <button class="btn" unicorn:click="add_item({{product.product.pk}})">+</button>
+                            <p class="item-quantity">{{product.quantity}}</p>
+                            <p class="btn" unicorn:click="remove_item({{product.product.pk}})">-</p>
+                        </div>
+                        <div class="item-totals">
+                            <p class="item-total-label">total: </p>
+                            <p class="item-total">R{{product.total_cost}}</p>
+                        </div>
+                        <button class="delete" unicorn:click="delete_item({{product.pk}})"><i class="fa-solid fa-trash"></i></button>
+                    </div>
+                {% endfor %}        
+            {% else %}
+                <div class="empty-message">
+                    <i class="fa-solid fa-cart-plus"></i>
+                    <p class="empty-cart-message">Maybe do some shopping first?</p>
+                    <p class="empty-cart-message">There's nothing here!</p>
+                </div>
+            {% endif %}
+        </div>
+    </div>
+</div>

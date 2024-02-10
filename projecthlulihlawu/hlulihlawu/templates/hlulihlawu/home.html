@@ -1,0 +1,441 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+    <link href="{% static 'hlulihlawu/home.css' %}" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;500;700&display=swap" rel="stylesheet"> 
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@200;300;400;500;700&display=swap" rel="stylesheet">
+    <script src="https://kit.fontawesome.com/ee5d0e9048.js" crossorigin="anonymous"></script>
+    <link rel="shortcut icon" type="image/jpg" href="{% static 'userpanel\img\hlulihlawubrand\icons\favicon-32x32.png' %}"/>
+    <title>HluliHlawu - All things SWEET!</title>
+</head>
+<div class="splash">
+    <div class="splash-logo-wrapper">
+        <img src="{% static 'hlulihlawu/img/hlulihlawubrand/hlulihlawu-logo.png' %}" alt="HluliHlawu Company Logo" class="splash-logo fade-in">
+    </div>
+    <div class="splash-hint-wrapper">
+        <i class="fa-solid fade-in splash-icon fa-circle-exclamation"></i>
+        <p class="splash-hint fade-in">
+            {{ splash_hint }}
+        </p>
+    </div>
+    <script>
+        const splash = document.querySelector('.splash')
+        document.addEventListener('DOMContentLoaded', (e)=>{
+            setTimeout(()=>{
+                splash.classList.add('display-none');
+            }, 5000);
+        })
+    </script>
+</div>
+<body class="body-fade-in">
+    <div class="navbar">
+        <div class="navbar-left">
+            <nav>
+                <ul class="nav-list">
+                    <li class="nav-list-item">
+                        <a class="nav-link active-nav-link" href="{% url 'landing_home' %}">Home</a>
+                    </li>
+                    <li class="nav-list-item">
+                        <a class="nav-link" href="#">Products</a>
+                        <ul class="product-dropdown dropdown">
+                            <li class="product-item">
+                                <a class="product-link" name="cakes" href="{% url 'shop-cakes' %}">Our Cakes</a>
+                            </li>
+                            <li class="product-item">
+                                <a class="product-link" name="cupcakes" href="{% url 'shop-cupcakes' %}">Our Cupcakes</a>
+                            </li>
+                            <li class="product-item">
+                                <a class="product-link" name="cookies" href="{% url 'shop-cookies' %}">Our Cookies</a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li class="nav-list-item">
+                        <a class="nav-link" href="#">Services</a>
+                        <ul class="services-dropdown dropdown">
+                            <li class="product-item">
+                                <a class="product-link" href="{% url 'event-catering' %}">Event Catering</a>
+                            </li>
+                            <li class="product-item">
+                                <a class="product-link" href="{% url 'business-catering' %}">Business Catering</a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li class="nav-list-item">
+                        <a class="nav-link" href="{% url 'contact' %}">Contact</a>
+                    </li>
+                    <li class="nav-list-item">
+                        <a class="nav-link nav-shop" href="{% url 'shop' %}">Shop</a>
+                        <ul class="shop-dropdown dropdown">
+                            <li class="product-item">
+                                <a class="product-link" name="cakes" href="{% url 'shop-cakes' %}">Cake</a>
+                            </li>
+                            <li class="product-item">
+                                <a class="product-link" name="cupcakes" href="{% url 'shop-cupcakes' %}">Cupcakes</a>
+                            </li>
+                            <li class="product-item">
+                                <a class="product-link" name="cookies" href="{% url 'shop-cookies' %}">Cookies</a>
+                            </li>
+                        </ul>
+                    </li>
+                </ul>
+            </nav>
+            <form action="{% url 'search' %}" method="post">
+                {% csrf_token %}
+                <input class="nav-searchbar" type="search" name="searched" placeholder="Search...">
+                <button class="nav-searchbar-icon"><i class="fa-solid fa-lg fa-magnifying-glass"></i></button>
+            </form>
+        </div>
+            <a href="#" class="toggle-button">
+                <i class="fa-solid fa-bars"></i>
+            </a>
+        <div class="logo-block">
+            <a href="{% url 'landing_home' %}" class="logo"><img src="{% static 'hlulihlawu/img/hlulihlawubrand/hlulihlawu-logo.png' %}" alt="HluliHlawu Company Logo" class="logo"></a>
+        </div>
+        <div class="navbar-right">
+            <div class="nav-buttons">
+                <a href="{% url 'cart' %}" class="nav-icons"><i class="fa-solid fa-cart-shopping fa-lg" title="Cart"></i></a>
+                {% if user.is_authenticated %}
+                    <a href="{% url 'profile' %}" class="nav-icons"><i class="fa-solid fa-user fa-lg" title="Account"></i></a>
+                    <a href="{% url 'logout' %}" class="nav-icons nav-auth logout"><i class="fa-solid fa-right-from-bracket" title="Log Out"></i></a>
+                {% else %}
+                    <i class="fa-solid fa-user fa-lg">
+                        <ul class="auth-actions">
+                            <li class="auth-action-item">
+                                <a href="{% url 'login' %}" class="nav-auth">Log In</a>
+                            </li>
+                            <li class="auth-action-item">
+                                <a href="{% url 'sign_up' %}" class="nav-auth">Sign Up</a>
+                            </li>
+                        </ul>
+                    </i>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+    <header>
+        <div id="banner-carousel" class="carousel slide carousel-fade" data-bs-ride="carousel">
+            <div class="carousel-indicators">
+                <li data-bs-target="#banner-carousel" data-bs-slide-to="0" class="active"></li>
+                <li data-bs-target="#banner-carousel" data-bs-slide-to="1"></li>
+            </div>
+            <div class="carousel-inner">
+                <div class="carousel-item active carousel-slide-one" data-bs-interval="8000">
+                    <div class="banner-carousel-content">
+                        <div class="slide-title slide-one-title">
+                            All things <span>Sweet!</span>
+                        </div>
+                        <div class="slide-shop-side">
+                            <div class="slide-tagline slide-one-tagline">
+                                <p>Whether it's <span>cake</span>, <span>scones</span> or <span>pie</span>,
+                                it's the sweetest way to start your day!</p>
+                            </div>
+                            <a class="slide-one-button slide-button" href="{% url 'shop' %}">Shop now!</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="carousel-item carousel-slide-two" data-bs-interval="8000">
+                    <div class="banner-carousel-content">
+                        <div class="slide-title slide-two-title">
+                            Oh so <span>Eventful!</span>
+                        </div>
+                        <div class="slide-shop-side">
+                            <div class="slide-tagline slide-two-tagline">
+                                <p>Get tailor-made cakes for any event to make your celebration
+                                    <span>that much</span> more special!
+                                </p>
+                            </div>
+                            <a class="slide-two-button slide-button" href="{% url 'shop' %}">Shop now!</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+    <div class="div-divider">
+        <img src="{% static 'hlulihlawu/img/hlulihlawubrand/hlulihlawu-transparent.png' %}" alt="Section divider" class="divider-logo">
+    </div>
+    <div class="product-carousel-section">
+        <i class="fa-solid fa-heart-circle-plus"></i>
+        <h1 class="product-carousel-title">This week's favourites</h1>
+        <hr class="carousel-line-break">
+        <div class="carousel-row">
+            <div class="product-row">
+                <h3 class="product-row-title">Cakes</h3>
+                <div id="product-carousel" class="carousel slide carousel-fade" data-bs-ride="carousel">
+                    <div class="carousel-inner">
+                        {% for cake in cakes %}
+                            {% if cake == cakes|first %}
+                                <div class="carousel-item active carousel-slide-one" data-bs-interval="7000">
+                                    <div class="product-carousel-content">
+                                        <div class="product-carousel-thumbnail">
+                                            <img src="{{cake.thumbnail.url}}" alt="" class="product-thumbnail">
+                                        </div>
+                                        <div class="product-carousel-details">
+                                            <a href="{% url 'shop-product' cake.pk%}" class="product-carousel-link">
+                                                <p class="product-title">{{cake.name}}</p>
+                                                <p class="product-price">R{{cake.price}}</p>
+                                            </a>
+                                        </div>
+                                    </div>
+                                </div>
+                            {% else %}
+                                <div class="carousel-item carousel-slide-one" data-bs-interval="7000">
+                                    <div class="product-carousel-content">
+                                        <div class="product-carousel-thumbnail">
+                                            <img src="{{cake.thumbnail.url}}" alt="" class="product-thumbnail">
+                                        </div>
+                                        <div class="product-carousel-details">
+                                            <a href="{% url 'shop-product' cake.pk%}" class="product-carousel-link">
+                                                <p class="product-title">{{cake.name}}</p>
+                                                <p class="product-price">R{{cake.price}}</p>
+                                            </a>
+                                        </div>
+                                    </div>
+                                </div>
+                            {% endif %}
+                        {% endfor %}
+                    </div>
+                </div>
+            </div>
+            <div class="product-row">
+                <h3 class="product-row-title">Cupcakes</h3>
+                <div id="product-carousel" class="carousel slide carousel-fade" data-bs-ride="carousel">
+                    <div class="carousel-inner">
+                        {% for cupcake in cupcakes %}
+                            {% if cupcake == cupcakes|first %}
+                                <div class="carousel-item product-carousel-item active carousel-slide-one" data-bs-interval="7000">
+                                    <div class="product-carousel-content">
+                                        <div class="product-carousel-thumbnail">
+                                            <img src="{{cupcake.thumbnail.url}}" alt="" class="product-thumbnail">
+                                        </div>
+                                        <div class="product-carousel-details">
+                                            <a href="{% url 'shop-product' cupcake.pk%}" class="product-carousel-link">
+                                                <p class="product-title">{{cupcake.name}}</p>
+                                                <p class="product-price">R{{cupcake.price}}</p>
+                                            </a>
+                                        </div>
+                                    </div>
+                                </div>
+                            {% else %}
+                                <div class="product-carousel-item carousel-item carousel-slide-one" data-bs-interval="7000">
+                                    <div class="product-carousel-content">
+                                        <div class="product-carousel-thumbnail">
+                                            <img src="{{cupcake.thumbnail.url}}" alt="" class="product-thumbnail">
+                                        </div>
+                                        <div class="product-carousel-details">
+                                            <a href="{% url 'shop-product' cupcake.pk%}" class="product-carousel-link">
+                                                <p class="product-title">{{cupcake.name}}</p>
+                                                <p class="product-price">R{{cupcake.price}}</p>
+                                            </a>
+                                        </div>
+                                    </div>
+                                </div>
+                            {% endif %}
+                        {% endfor %}
+                    </div>
+                </div>
+            </div>
+            <div class="product-row">
+                <h3 class="product-row-title">Cookies</h3>
+                <div id="product-carousel" class="carousel slide carousel-fade" data-bs-ride="carousel">
+                    <div class="carousel-inner">
+                        {% for cookie in cookies %}
+                            {% if cookie == cookies|first %}
+                                <div class="carousel-item product-carousel-item active carousel-slide-one" data-bs-interval="7000">
+                                    <div class="product-carousel-content">
+                                        <div class="product-carousel-thumbnail">
+                                            <img src="{{cookie.thumbnail.url}}" alt="" class="product-thumbnail">
+                                        </div>
+                                        <div class="product-carousel-details">
+                                            <a href="{% url 'shop-product' cookie.pk%}" class="product-carousel-link">
+                                                <p class="product-title">{{cookie.name}}</p>
+                                                <p class="product-price">R{{cookie.price}}</p>
+                                            </a>
+                                        </div>
+                                    </div>
+                                </div>
+                            {% else %}
+                                <div class="carousel-item product-carousel-item carousel-slide-one" data-bs-interval="7000">
+                                    <div class="product-carousel-content">
+                                        <div class="product-carousel-thumbnail">
+                                            <img src="{{cookie.thumbnail.url}}" alt="" class="product-thumbnail">
+                                        </div>
+                                        <div class="product-carousel-details">
+                                            <a href="{% url 'shop-product' cookie.pk%}" class="product-carousel-link">
+                                                <p class="product-title">{{cookie.name}}</p>
+                                                <p class="product-price">R{{cookie.price}}</p>
+                                            </a>
+                                        </div>
+                                    </div>
+                                </div>
+                            {% endif %}
+                        {% endfor %}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="welcome-promo-section">
+        <div class="welcome-promo-content">
+            <p class="welcome-title">
+                Welcome to 
+                <span>
+                    <img src="{% static 'hlulihlawu/img/hlulihlawubrand/logo-text.png' %}" alt="" class="welcome-letter-logo">
+                </span>
+            </p>
+            <p class="welcome-letter">
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+            </p>
+
+            <div id="promo-carousel" class="carousel slide carousel-fade" data-bs-ride="carousel">
+                <div class="carousel-inner">
+                    <div class="carousel-item promo-carousel-item active promo_slide_one" data-bs-interval="10000">
+                        <div class="promo-carousel-content">
+                            <div class="promo-title promo-one-title">
+                                Tired of being the only snack in the house?
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="carousel-item promo_slide_two" data-bs-interval="3000">
+                        <div class="promo-carousel-content">
+                            <div class="promo-title  promo-two-title">
+                                Then don't be! Treat yourself to the
+                                <span class="promo-span">sweet</span><br>things
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="carousel-item promo_slide_three" data-bs-interval="3000">
+                        <div class="promo-carousel-content">
+                            <div class="promo-title  promo-three-title">
+                                Then don't be! Treat yourself to the
+                                <span class="promo-span">sweet</span><br>things
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="carousel-item  carousel-fade promo_slide_four" data-bs-interval="5000">
+                        <div class="promo-carousel-content">
+                            <div class="promo-title  promo-four-title">
+                                Then don't be! Treat yourself to the
+                                <span class="promo-span">sweet</span><br>things
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="div-divider">
+        <img src="{% static 'hlulihlawu/img/hlulihlawubrand/hlulihlawu-transparent.png' %}" alt="Section divider" class="divider-logo">
+    </div>
+    <div class="operating-hours">
+        <div class="operating-title-card">
+            <h1 class="operating-section-title">Operating Hours</h1>
+            <hr class="operating-line-break">
+            <i class="fa-solid fa-clock"></i>          
+        </div>
+        <div class="operating-card">
+            <p class="operating-card-title">Work Hard, Eat Better</p>
+            <hr class="operating-break">
+            <div class="operating-card-desc">
+                <div class="operating-days">
+                    <p class="days">Monday - Friday:</p>
+                    <p class="days">Saturday:</p>
+                    <p class="days">Sunday & Holidays:</p>
+                </div>
+                <div class="operate-hours">
+                    <p class="hours">08:00 - 18:00</p>
+                    <p class="hours">08:00 - 14:00</p>
+                    <p class="hours">No Deliveries Made</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="delivery-section">
+        <i class="fa-solid fa-truck-fast"></i>
+        <h1 class="delivery-section-title">Delivery</h1>
+        <hr class="delivery-line-break">
+        <div class="delivery-cards">
+            <div class="delivery-card">
+                <i class="fa-regular fa-calendar delivery-card-icon"></i>
+                <p class="card-title">It's here already?</p>
+                <hr class="delivery-line-break">
+                <p class="card-desc">
+                    Deliveries in <br><b>3 - 4 days</b><br> for
+                     orders within <br>the province!
+                </p>
+            </div>
+            <div class="delivery-card location-card">
+                <i class="fa-solid fa-location-dot delivery-card-icon"></i>
+                <p class="card-title">Location, location</p>
+                <hr class="delivery-line-break">
+                <p class="card-desc">
+                    Deliveries anywhere within Gauteng Province!
+                </p>
+            </div>
+            <div class="delivery-card">
+                <i class="fa-solid fa-computer delivery-card-icon"></i>
+                <p class="card-title">All day, Everyday!</p>
+                <hr class="delivery-line-break">
+                <p class="card-desc">
+                    We only deliver <br><b>Monday - Saturday</b><br>
+                    but you can place your order<br>
+                    here WHENEVER!
+                </p>
+            </div>
+        </div>
+    </div>
+    <footer>
+        <div class="footer-content">
+            <div class="footer-list-row">
+                <div class="footer-col">
+                    <p class="footer-col-title">Shop by</p>
+                    <ul class="footer-list">
+                        <li class="footer-list-item"><a class="footer-list-link" href="{% url 'shop-cakes' %}">Cakes</a></li>
+                        <li class="footer-list-item"><a class="footer-list-link" href="{% url 'shop-cookies' %}">Biscuits</a></li>
+                        <li class="footer-list-item"><a class="footer-list-link" href="{% url 'shop-cupcakes' %}">Cupcakes</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <p class="footer-col-title">Company</p>
+                    <ul class="footer-list">
+                        <li class="footer-list-item"><a class="footer-list-link" href="{% url 'construction' %}">Affiliate</a></li>
+                        <li class="footer-list-item"><a class="footer-list-link" href="{% url 'construction' %}">Newsletter</a></li>
+                        <li class="footer-list-item"><a class="footer-list-link" href="{% url 'event-catering' %}">Our Services</a></li>
+                        <li class="footer-list-item"><a class="footer-list-link" href="{% url 'construction' %}">Job Openings</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <p class="footer-col-title">Follow us</p>
+                    <ul class="footer-list">
+                        <li class="footer-list-item"><a class="footer-list-link" href=""><i class="fa-brands fa-twitter"></i></a></li>
+                        <li class="footer-list-item"><a class="footer-list-link" href=""><i class="fa-brands fa-facebook"></i></a></li>
+                        <li class="footer-list-item"><a class="footer-list-link" href=""><i class="fa-brands fa-instagram"></i></a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-logo-block">
+                <a href="{% url 'landing_home' %}" class="footerlogo"><img src="{% static 'hlulihlawu/img/hlulihlawubrand/hlulihlawu-logo.png' %}" alt="HluliHlawu Company Logo" class="footer-logo"></a>
+            </div>
+        </div>
+        <div class="developer-credit-section">
+            <p class="developer-note">
+                Developed by <a href="#">Andromedes Web Solutions</a>
+            </p>
+        </div>
+    </footer>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.10.2/dist/umd/popper.min.js" integrity="sha384-7+zCNj/IqJ95wo16oMtfsKbZ9ccEh31eOz1HGyDuCQ6wgnyJNSYdrPa03rtR1zdB" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.min.js" integrity="sha384-QJHtvGhmr9XOIpI6YVutG+2QOK9T+ZnN4kzFN1RtK3zEFEIsxhlmWl5/YESvpZ13" crossorigin="anonymous"></script>
+    <script src="{% static 'hlulihlawu/js/toggle.js' %}"></script>
+</body>
+</html>

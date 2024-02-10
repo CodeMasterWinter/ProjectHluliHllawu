@@ -1,0 +1,55 @@
+{% extends 'userpanel\base.html' %}
+
+{% block bodycontent %}
+    <div class="form-section">
+        <p class="page-title">
+            {{ page_title }}
+        </p>
+        <form action="" method="post">
+            {% csrf_token %}
+            <div class="first_name">
+                <label for="id_first_name" class="formlabel">{{ form.first_name.label }}</p>
+                {{form.first_name}}
+            </div>
+            <div class="last_name">
+                <label for="id_last_name" class="formlabel">{{ form.last_name.label }}</p>
+                {{form.last_name}}
+            </div>
+            <div class="username">
+                <label for="id_username" class="formlabel">{{ form.username.label }}</p>
+                {{form.username}}
+            </div>
+            <div class="email">
+                <label for="id_email" class="formlabel">{{ form.email.label }}</p>
+                {{form.email}}
+            </div>
+            <div class="password1">
+                <label for="id_password1" class="formlabel">{{ form.password1.label }}</p>
+                {{form.password1}}
+            </div>
+            <div class="password2">
+                <label for="id_password2" class="formlabel">{{ form.password2.label }}</p>
+                {{form.password2}}
+            </div>
+            <button class="submit" type="submit">Sign Up</button>
+        </form>
+        <p class="sign-up-redirect">Already have an account? <a href="{% url 'login' %}" class="redirect-link">Log in</a></p>
+    </div>
+    <div class="message-board">
+        {% for field in form %}
+            <p>{{ field.errors}} </p>
+        {% endfor %}
+        {{ form.non_field_errors }}
+    </div>
+    <div class="guide-message">
+        <p class="guide-headline">Remember!</p>
+        <ul class="guidelines">
+            <li class="guide-item">
+                <p class="guidepoint">Always use your real name and surname when signing up! ID plays a huge role in buying and delivery</p>
+            </li>
+            <li class="guide-item">
+                <p class="guidepoint">Make sure your password is SUPER secure! Your profile contains sensitive personal information</p>
+            </li>
+        </ul>
+    </div>
+{% endblock bodycontent %}

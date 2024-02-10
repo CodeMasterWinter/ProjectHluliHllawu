@@ -1,0 +1,8 @@
+{% extends 'userpanel\base.html' %}
+
+{% block bodycontent %}
+    <h1 class="page-title">
+        You have been logged out!
+    </h1>
+    <a href="{% url 'login' %}" class="redirect-link">Log in again</a>
+{% endblock bodycontent %}

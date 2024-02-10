@@ -1,0 +1,44 @@
+<div>
+    <div class="page-content" id="orders">
+        <p class="page-content-title">Track your orders</p>
+        <div class="page-content-block">
+            <div class="user-data-section">
+                {% if orders %}
+                    {% for order in orders %}
+                        <hr class="content-divider">
+                        <div class="user-data-block product-data">
+                            <div class="data-block">
+                                <label class="data-label" for="order_name">Order name:</label>
+                                <p class="user-data order-data" id="order_name" readonly>{{order.name}}</p>
+                            </div>
+                            <div class="data-block">
+                                <label class="data-label" for="order_id">Order ID:</label>
+                                <p class="user-data order-data" id="order_id" readonly>{{order.transaction_id}}</p>
+                            </div>
+                        </div>
+                        <div class="order-data-section">
+                            {% for orderitem in order.orderitems.all %}
+                                <div class="user-list-data">
+                                    <label class="data-label" for="order_item">Product:</label>
+                                    <p class="user-data" id="order_item">{{orderitem.product.name}}</p>
+                                    <label class="data-label" for="order_item">Quantity:</label>
+                                    <input type="text" class="user-data product-quantity" id="order_item" placeholder={{orderitem.quantity}} readonly>
+                                </div>                         
+                            {% endfor %}
+                        </div>
+                        <hr class="content-divider">
+                        <div class="data-update-section">
+                            <a href="{% url 'delete-order' order.transaction_id %}" class="user-data-save order-delete">Delete order</a>
+                        </div>
+                    {% endfor %}
+                {% else %}
+                    <hr class="content-divider">
+                    <div class="user-data-block">
+                        <h2 class="emptyorders">{{empty_orders}}</h2>
+                    </div>
+                    <hr class="content-divider">
+                {% endif %}
+            </div>
+        </div>
+    </div>
+</div>

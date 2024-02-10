@@ -1,0 +1,69 @@
+<div class="checkout-section">
+    <div class="checkout-summary">
+        <div class="checkout-details">
+            <div class="checkout-summary-header">
+                <h2 class="checkout-summary-title">Order Summary</h2>
+                <div class="checkout-info">
+                    <p class="checkout-order-name">{{order.name}}</p>
+                </div>
+            </div>
+            <div class="checkout-details-table">
+                <h5 class="checkout-table-title">Products</h5>
+                {% for product in user_products %}
+                    <div class="checkout-data">
+                        <p class="product-title">{{product.quantity}} x {{product.product}}</p>
+                        <p class="product-total">R{{product.total_cost}}</p>
+                    </div>
+                {% endfor %}
+                <div class="checkout-delivery-data">
+                    <p class="product-title">Delivery Cost:</p>
+                    <p class="product-total">R{{delivery_cost}}</p>
+                </div>
+                <div class="checkout-data">
+                    <h3 class="checkout-total">Total</h3>
+                    <p class="checkout-total-price">R{{total}}</p>
+                </div>
+            </div>
+        </div>
+        <div class="checkout-form">
+          <div class="checkout-form-header">
+            <h2 class="checkout-form-title">Pay Here</h2>
+        </div>
+            <button id="checkout-button">Pay with YOCO</button>
+            <script>
+                var yoco = new window.YocoSDK({
+                    publicKey: 'pk_test_75f807f39AEKzKg714f4',
+                });
+                var checkoutButton = document.querySelector('#checkout-button');
+                checkoutButton.addEventListener('click', function () {
+                    yoco.showPopup({
+                        amountInCents: '{{ get_cents }}',
+                        currency: 'ZAR',
+                        name: 'HluliHlawu - {{order.name}}',
+                        description: '{{order.name}} - {{total}}',
+                        callback: function (result) {
+                        // This function returns a token that your server can use to capture a payment
+                        if (result.error) {
+                            const errorMessage = result.error.message;
+                            alert("error occured: " + errorMessage);
+                        } else {
+                            var res_id = result.id
+                            var cents = '{{ get_cents }}'
+                            const comresult = {res_id, cents}
+                            const comresultJSON = JSON.stringify(comresult)
+                            console.log(comresultJSON)
+                            window.alert(comresultJSON)
+                            $.ajax({
+                                url: "{% url 'checkout' transaction_id %}",
+                                type: "POST",
+                                contentType: "application/json",
+                                data: comresultJSON
+                                });
+                              }
+                            }
+                          })
+                        });
+            </script>
+        </div>
+    </div>
+</div>

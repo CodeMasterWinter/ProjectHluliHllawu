@@ -1,0 +1,733 @@
+*{
+    margin: 0;
+    padding: 0;
+    font-family: 'Montserrat';
+}
+
+body{
+    background: url('img/construction_bg.png');
+}
+
+.drip-bg{
+    top: 11vh;
+    z-index: 1;
+    height: 12vh;
+    width: 100%;
+    position:absolute;
+}
+
+.navbar{
+    z-index: 5;
+    height: 12vh;
+    display: flex;
+    padding-left: 2%;
+    padding-right: 2%;
+    align-items: center;
+    justify-content: center;
+    background: #1f1500;
+}
+
+.navbar-left{
+    flex: 0.4;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+nav{
+    flex: 1;
+}
+
+.nav-list{
+    margin: 0;
+    height: 100%;
+    display: flex;
+    list-style: none;
+    align-items: center;
+    justify-content: space-around;
+}
+
+.nav-list-item{
+    cursor: pointer;
+    position: relative;
+}
+
+.toggle-button{
+    display: none;
+}
+
+.dropdown{
+    top: 6vh;
+    left: 2vh;
+    gap: 2vh;
+    z-index: 5;
+    opacity: 0;
+    width: 12vw;
+    padding: 16%;
+    display: flex;
+    position: absolute;
+    visibility: hidden;
+    border-radius: 12px;
+    flex-direction: column;
+    transition: all 0.3s ease;
+    background-color: #ffffff;
+}
+
+.product-dropdown{
+    width: 17vw;
+}
+
+.services-dropdown{
+    width: 17vw;
+}
+
+.nav-list-item:hover .dropdown,
+.nav-list-item:focus .dropdown{
+    opacity: 1;
+    visibility: visible;
+}
+
+.product-item{
+    padding: 8%;
+    list-style: none;
+    border-radius: 8vw;
+    transition: all 0.1s ease;
+}
+
+.product-item:hover,
+.product-item:focus{
+    background-color: rgba(0, 100, 148, 0.2);
+}
+
+.product-link{
+    color: #000000;
+    font-weight: 700;
+    text-decoration: none;
+}
+
+.product-link:active{
+    color: #0582ca;
+}
+
+.nav-link{
+    padding: 2vh;
+    font-size: 16px;
+    font-weight: 500;
+    color: #ffffff;
+    border-radius: 1vh;
+    text-decoration: none;
+    transition: all 0.3s ease-in-out;
+}
+
+.active-nav-link{
+    font-weight: 700;
+}
+
+.nav-link:hover{
+    color: #ffffff;
+    background-color: #2b1d00;
+}
+
+.nav-link:active{
+    opacity: 0.8;
+}
+
+.nav-shop{
+    padding: 2vh;
+    border-radius: 4vh;
+    border: 3px solid #ffffff;
+    background-color: #3f2c03;
+}
+
+.nav-shop:hover{
+    background-color: #3b2800;
+}
+
+.nav-shop:active{
+    background-color: #2b1d00;
+}
+
+.logo-block{
+    flex: 0.2;
+    height: 100%;
+    display: flex;
+    align-items: center;;
+    justify-content: center;
+}
+
+.logo{
+    z-index: 5;
+    height: 14vh;
+    cursor: pointer;
+}
+
+.logo:hover{
+    animation: pulse 0.3s linear 1;
+}
+
+.navbar-right{
+    flex: 0.4;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: right;
+}
+
+.fa-user:hover .auth-actions,
+.fa-user:focus .auth-actions{
+    opacity: 1;
+    visibility: visible;
+}
+
+.auth-actions{
+    gap: 2vh;
+    top: 16vh;
+    right: 3vw;
+    z-index: 5;
+    opacity: 0;
+    width: 14vw;
+    padding: 1vw;
+    display: flex;
+    visibility: hidden;
+    position: absolute;
+    border-radius: 12px;
+    flex-direction: column;
+    transition: all 0.3s ease;
+    background-color: #ffffff;
+}
+
+.nav-auth{
+    color: #0582ca;
+    font-weight: 700;
+    font-family: "Montserrat";
+    text-decoration: none;
+}
+
+.logout{
+    font-size: 22px;
+    color: #ffffff;
+    margin-left: 2vw;
+}
+
+.nav-auth:active{
+    color: #000000;
+}
+
+
+.auth-action-item{
+    padding: 15%;
+    list-style: none;
+    border-radius: 8vw;
+    transition: all 0.1s ease;
+}
+
+.auth-action-item:hover,
+.auth-action-item:focus{
+    background-color: rgba(0, 100, 148, 0.2);
+}
+
+.fa-cart-shopping, .fa-user{
+    margin: 0 2vw;
+    color: #ffffff;
+}
+
+.body-content{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    position: fixed;
+    height: 86vh;
+    width: 100vw;
+    margin-top: -3vh;
+    z-index: -1;
+}
+
+.page-title{
+    margin-top: 0;
+    margin-bottom: 3vh;
+    font-size: 24px;
+    font-weight: 700;
+    color: #ffffff;
+    font-family: 'Montserrat';
+}
+
+.form-section{
+    display: flex;
+    flex-direction: column;
+    margin-top: 12vh;
+    padding: 2vh;
+    border-radius: 12vh;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    backdrop-filter: blur(4px);
+    background-color: rgba(0, 0, 0, 0.363);
+}
+
+.login-section{
+    display: flex;
+    flex-direction: column;
+    margin-top: 12vh;
+    padding: 6vh;
+    border-radius: 12vh;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    backdrop-filter: blur(4px);
+    background-color: rgba(0, 0, 0, 0.363);
+}
+
+.formlabel{
+    font-size: 14px;
+    color: #ffffff;
+}
+
+input{
+    color: #ffffff;
+    margin: 1vh 0;
+    text-align: center;
+    outline: none;
+    height: 4vh;
+    border-radius: 3vh;
+    font-size: 14px;
+    font-weight: 700;
+    font-family: "Montserrat";
+    border: 2px solid #58b4e9;
+    background-color: #043e5f;
+}
+
+.first_name, .last_name{
+    margin: 0 1vw;
+    margin-bottom: 2vh;
+    display: inline-block;
+}
+
+.password1, .password2{
+    margin: 0 1vw;
+    margin-bottom: 2vh;
+    display: inline-block;
+}
+
+.email{
+    margin-bottom: 2vh;
+}
+
+#id_username{
+    width: 94%;
+}
+
+#id_email{
+    width: 94%;
+    margin-bottom: 2vh;
+    display: block;
+}
+
+.login-user, .login-pass{
+    height: 6vh;
+    color: #ffffff;
+    margin-bottom: 5vh;
+    outline: none;
+    border-radius: 3vh;
+    font-size: 14px;
+    font-weight: 700;
+    font-family: "Montserrat";
+    border: 2px solid #58b4e9;
+    background-color: #043e5f;
+}
+
+.login-pass{
+    font-size: 24px;
+    font-weight: 700;
+}
+
+.submit{
+    display: block;
+    font-weight: 700;
+    color: #ffffff;
+    padding: 2vh;
+    margin: auto;
+    margin-bottom: 2vh;
+    margin-top: 2vh;
+    border-radius: 4vh;
+    border: 3px solid #ffffff;
+    background-color: #3f2c03;
+    cursor: pointer;
+}
+
+.submit:hover{
+    background-color: #3b2800;
+}
+
+.submit:active{
+    background-color: #2b1d00;
+}
+
+.sign-up-redirect{
+    font-size: 14px;
+    cursor: pointer;
+    color: #ffffff;
+    margin-bottom: 0;
+}
+
+.redirect-link{
+    font-size: 14px;
+    cursor: pointer;
+    font-weight: 700;
+    color: #ffffff;
+    text-decoration: none;
+}
+
+.redirect-link:visited{
+    color: #ffffff;
+    text-decoration: none;
+}
+
+.guide-message{
+    left: 6vw;
+    width: 18vw;
+    position: absolute;
+    padding: 3vh;
+    border-radius: 12vh;
+    text-align: center;
+    backdrop-filter: blur(4px);
+    background-color: rgba(0, 0, 0, 0.363);
+}
+
+.guide-headline{
+    padding: 1vw;
+    font-size: 18px;
+    font-weight: 700;
+    color: #ffffff;
+}
+
+.guide-item{
+    list-style: none;
+}
+
+.guidepoint{
+    padding: 2vh;
+    font-size: 14px;
+    font-weight: 500;
+    color: #ffffff;
+}
+
+.errorlist{
+    top: 40vh;
+    right: 6vw;
+    width: 18vw;
+    position: absolute;
+    padding: 4vh;
+    border-radius: 6vh;
+    text-align: center;
+    background-color: #ffffff;
+}
+
+.errorlist li{
+    list-style: none;
+    font-weight: 700;
+    color: #ff0000;
+}
+
+.reset-instructions{
+    color: #ffffff;
+    width: 25vw;
+    padding: 4vh 2vw;
+    font-weight: 700;
+}
+
+.helptext{
+    display: none;
+}
+
+.newpassword, .confirmpassword{
+    color: #ffffff;
+    display: flex;
+    flex-direction: column;
+    margin: 4vh 0;
+}
+
+.password-reset{
+    text-align: center;
+    width: 30vw;
+    color: #ffffff;
+    font-weight: 700;
+}
+.email-submit{
+    margin: auto;
+    margin-top: 5vh;
+}
+
+.fa-circle-exclamation{
+    color: #ff0000;
+}
+
+@media (min-width: 240px) and (max-width: 768px){
+    .splash{
+        display: none;
+    }
+
+    .navbar{
+        height: 12vh;
+    }
+
+    .toggle-button{
+        flex: 0.4;
+        width: 6vw;
+        height: 3vh;
+        margin-left: 2vw;
+        display: flex;
+        color: #ffffff;
+        text-decoration: none;
+    }
+
+    .navbar-left{
+        left: 0;
+        top: 12vh;
+        height: 10vh;
+        width: 100%;
+        display: none;
+        background-color: #0582ca;
+        position: absolute;
+        transition: all 0.3s ease;
+    }
+
+    .navbar-left.active {
+        display: flex;
+    }
+
+    .nav-searchbar, .nav-searchbar-icon{
+        top: 10vh;
+        margin: 0;
+        z-index: 9;
+        height: 10vh;
+        border-radius: 0;
+    }
+
+    .nav-searchbar{
+        left: 0;
+        width: 80%;
+        border-right: none;
+        padding-left: 10vw;
+    }
+
+    .nav-searchbar-icon{
+        right: 0;
+        width: 20%;
+        border-left: none;
+        border: 3px solid #ffffff;
+    }
+
+    .logo{
+        height: 8vh;
+    }
+
+    nav{
+        flex: 1;
+        height: 100%;
+    }
+
+    .nav-link{
+        padding: 1vh;
+        font-size: 10px;
+        font-weight: 500;
+    }
+
+    .dropdown{
+        top: 4vh;
+        left: 0;
+        z-index: 10;
+        opacity: 0;
+        width: 45vw;
+        display: flex;
+        position: absolute;
+        visibility: hidden;
+    }
+
+    .shop-dropdown{
+        left: -30vw;
+    }
+
+    .nav-icons{
+        margin-right: 3vw;
+    }
+
+    .nav-buttons{
+        font-size: 10px;
+    }
+
+    .auth-actions{
+        top: 10vh;
+        z-index: 10;
+        width: 35vw;
+    }
+
+    .drip-bg{
+        display: none;
+    }
+
+    .body-content{
+        height: 100%;
+        position: absolute;
+        margin-top: 0;
+    }
+
+    .form-section{
+        width: 100%;
+        height: 100%;
+        margin: 5vh 5vw;
+        padding: 6vh 3vw;
+        border-radius: 0;
+    }
+}
+
+@media (min-width: 768px) and (max-width: 1024px){
+
+    .drip-bg{
+        top: 11vh;
+        z-index: 4;
+        height: 6vh;
+    }
+
+    .navbar{
+        height: 12vh;
+        padding-left: 1%;
+        padding-right: 1%;
+    }
+
+    .logo{
+        height: 10vh;
+    }
+
+    .nav-searchbar{
+        top: 10vh;
+        right: 6vw;
+        width: 35vw;
+        height: 4vh;
+        z-index: 4;
+    }
+
+    .nav-searchbar-icon{
+        top: 10vh;
+        height: 4vh;
+        right: 4.2vw;
+        z-index: 5;
+    }
+
+    .menu-icon{
+       display: inline-block;
+       margin-top: 4vh; 
+       margin-left: 5vh;
+       position: relative;
+       cursor: pointer;
+    }
+
+    .fa-bars{
+       font-size: 24px;
+       color: #ffffff;
+    }
+
+    .nav-link{
+        padding: 1vh;
+        font-size: 10px;
+        font-weight: 500;
+    }
+
+    .nav-list-item{
+        cursor: pointer;
+        padding: 1vh 0;
+        position: relative;
+    }
+
+    .nav-icons{
+        margin-right: 3vw;
+    }
+
+    .auth-actions{
+        top: 8vh;
+        width: 20%;
+        z-index: 5;
+        padding: 1vh 1vw;
+    }
+
+    .body-content{
+        width: 100%;
+        height: 100%;
+        display: flex;
+        margin-top: -3vh;
+    }
+
+    .form-section{
+        max-width: 55%;
+        margin-top: 0;
+        padding: 4vh;
+        border-radius: 6vh;
+        backdrop-filter: blur(4px);
+        background-color: rgba(0, 0, 0, 0.363);
+    }
+
+    .login-section{
+        width: 50vw;
+        display: flex;
+        flex-direction: column;
+        margin-top: 0vh;
+        padding: 2vh;
+        border-radius: 2vh;
+    }
+
+    .formlabel{
+        font-size: 14px;
+        color: #ffffff;
+    }
+
+    .login-user, .login-pass{
+        height: 6vh;
+    }
+
+    .submit{
+        display: block;
+        font-weight: 700;
+        color: #ffffff;
+        padding: 2vh 3vw;
+    }
+    
+    .submit:hover{
+        background-color: #3b2800;
+    }
+    
+    .submit:active{
+        background-color: #2b1d00;
+    }
+
+    .guide-message{
+        display: none;
+    }
+
+    .footer-col{
+        width: 33%;
+        padding: 0 2vw;
+        margin-top: 4vh;
+    }
+
+    .footer-col-title{
+        padding: 2vh 0;
+        font-size: 18px;
+    }
+
+    .fa-brands{
+        font-size: 24px;
+    }
+
+    .footer-logo-block{
+        height: 40vh;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin-right: 2vw;
+    }
+    
+    .footer-logo{
+        height: 15vh;
+        animation: pulse 1s linear infinite;
+    }
+}

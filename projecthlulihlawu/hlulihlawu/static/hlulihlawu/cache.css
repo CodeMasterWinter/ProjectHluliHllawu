@@ -1,0 +1,257 @@
+.cart-section{
+    height: 100%;
+    padding: 4vh;
+    margin: 8vh auto;
+    background-color: #ffffff;
+    box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 1px 3px 1px;
+}
+
+.cart-totals{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    align-items: center;
+    padding: 2vh 4vw;
+}
+
+.continue, .cart-total-item, .cart-total-cost, .go-to-checkout{
+    width: 25%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.total-items, .total-cost{
+    margin: 0;
+    font-weight: 900;
+}
+
+.continue-shopping{
+    width: 20vw;
+    display: flex;
+    padding: 0 1vw;
+    align-items: center;
+    color: #ffffff;
+    font-weight: 600;
+    text-decoration: none;
+    min-width: max-content;
+    background-color: #0582ca;
+}
+
+.continue-shopping:hover{
+    color: #ffffff;
+}
+
+.continue-shopping:active{
+    color: #ffffff;
+    padding: 1.5vh 1.5vw;
+    background-color: #0582ca;
+}
+
+.checkout{
+    width: 20vw;
+    padding: 0 1vw;
+    color: #ffffff;
+    font-weight: 600;
+    border: none;
+    text-decoration: none;
+    min-width: max-content;
+    background-color: #1b7400;
+}
+
+.checkout:active{
+    color: #ffffff;
+    padding: 1.5vh 1.5vw;
+    background-color: #114b00;
+}
+
+.cart-buttons{
+    width: 100%;
+    display: flex;
+    align-items: center;
+    padding: 2vh 2vw;
+    justify-content: center;
+}
+
+.cart-summary{
+    width: 90vw;
+    margin: 8vh auto;
+    background-color: #d9d9d9;
+}
+
+.order-summary{
+    display: flex;
+    padding: 5vh;
+}
+
+.checkout-summary{
+    flex: 0.5;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.order-details{
+    flex: 0.5;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.checkout-title{
+    padding: 2vh 0;
+    font-family: 'Montserrat';
+    font-weight: 700;
+    color: #0582ca;
+}
+
+.cart-summary-info{
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+}
+
+.checkout, .continue-shopping{
+    height: 8vh;
+}
+
+#order-name{
+    font-weight: 700;
+    color: #000000;
+    background-color: #bbbbbb;
+    padding: 2vh;
+    margin: 5vh auto;
+    outline: none;
+    border: none;
+}
+
+.item-thumbnail{
+    width: 20%;
+    height: 12vh;
+    margin-right: 1vw;
+}
+
+.cart-item-thumbnail{
+    height: 100%;
+    width: 100%;
+    object-fit: cover;
+}
+
+.cart-item{
+    display: flex;
+    margin: 2vh 0;
+    justify-content: center;
+    align-items: center;
+    background-color: #d9d9d9;
+}
+
+.item-name{
+    flex: 0.4;
+    margin: 0;
+    font-weight: 900;
+}
+
+.item-price{
+    flex: 0.2;
+    margin: 0;
+    font-weight: 900;
+}
+
+.quantity-count{
+    flex: 0.2;
+    display: flex;
+    margin: 0;
+    justify-content: space-between;
+    align-items: center;
+    font-weight: 900;
+}
+
+.cart-total-info{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+
+.total-items{
+    margin: 0 2vw;
+}
+
+.item-quantity{
+    margin: 0;
+}
+
+.btn{
+    margin: 0;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background-color: #bbbbbb;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 20px;
+    font-weight: 900;
+    color: #202020;
+    cursor: pointer;
+}
+
+.btn:active{
+    width: 38px;
+    height: 38px;
+}
+
+.item-totals{
+    flex: 0.2;
+    display: flex;
+    flex-direction: column;
+}
+
+.item-total{
+    margin: 0;
+    display: flex;
+    text-align: center;
+    justify-content: center;
+    align-items: center;
+    font-weight: 900;
+}
+
+.item-total-label{
+    margin: 0;
+    display: flex;
+    text-align: center;
+    justify-content: center;
+    align-items: center;
+    font-weight: 900;
+}
+
+.delete{
+    border: none;
+    padding: 4vh;
+}
+
+.fa-trash{
+    font-size: 20px;
+    color: #d11515;
+    transition: 0.1s ease-in-out
+}
+
+.fa-trash:active{
+    font-size: 18px;
+}
+
+.fa-cart-plus{
+    color: #0582ca;
+    font-size: 36px;
+    padding: 2vh 2vw;
+}
+
+.empty-message{
+    margin-top: 2vh;
+    font-weight: 900;
+    font-size: 24px;
+    text-align: center;
+    color: #0582ca;
+}

@@ -1,0 +1,62 @@
+{% extends 'userpanel\profile.html' %}
+
+{% block bodycontent %}
+    {% if userinfoform.errors %}
+        <div class="error-board">
+            <i class="fa-solid message-icon fa-circle-exclamation"></i>
+            {% for field in userinfoform %}
+                {% for error in field.errors %}
+                    <p> {{ error }} </p>
+                {% endfor %}
+            {% endfor %}
+        </div>
+    {% endif %}
+    {% if messages %}
+        {% for message in messages %}
+            <div class="alert alert-{{ message.tags }}">
+                <i class="fa-solid message-icon fa-circle-info"></i>
+                {{ message }}
+            </div>
+        {% endfor %}
+    {% endif %}
+<div class="bodycontent">
+    <div class="sitebar">
+        <a href="{% url 'infoupdate' %}" class="site-header active-header" id="user-header">Update User Info</a>
+        <a href="{% url 'contactupdate' %}" class="site-header" id="contact-header">Update Contact Details</a>
+        <a href="{% url 'cart' %}" class="site-header" id="cart-header">Manage cart</a>
+    </div>
+    <div class="pages">
+        <div class="page-content">
+            <p class="page-content-title">User Information</p>
+            <div class="page-content-block">
+                <div class="user-data-section">
+                    <form action="" method="post">
+                        {% csrf_token %}
+                        <hr class="content-divider">
+                        <div class="user-data-block">
+                            <label class="data-label" for="first_name">First Name</label>
+                            <input type="text" class="user-data" id="id_first_name" name="first_name" maxlength="150" value={{user.first_name}} required="">
+                        </div>
+                        <hr class="content-divider">
+                        <hr class="content-divider">
+                        <div class="user-data-block">
+                            <label class="data-label" for="last_name">Last Name</label>
+                            <input type="text" class="user-data" id="id_last_name" name="last_name" maxlength="150" value={{user.last_name}} required="">
+                        </div>
+                        <hr class="content-divider">
+                        <hr class="content-divider">
+                        <div class="user-data-block">
+                            <label class="data-label" for="username">Username</label>
+                            <input type="text" class="user-data" id="id_username" name="username" maxlength="150" value={{user.username}} required="">
+                        </div>
+                        <hr class="content-divider">
+                        <div class="data-update-section">
+                            <button type="submit" class="user-data-save">Update</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock bodycontent %}

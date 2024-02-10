@@ -1,0 +1,28 @@
+{% extends 'userpanel\base.html' %}
+
+{% block bodycontent %}
+    <div class="form-section login-section">
+        <p class="page-title">
+            Log In
+        </p>
+        <form action="" method="post">
+            {% csrf_token %}
+            <div class="username">
+                <label for="id_username" class="formlabel">{{ form.username.label }}</p>
+                    <input type="text" class="login-user" name="username" autofocus="" autocapitalize="none" autocomplete="username" maxlength="150" required="" id="id_username">
+            </div>
+            <div class="password">
+                <label for="id_password" class="formlabel">{{ form.password.label }}</p>
+                    <input type="password" class="login-pass" name="password" autocomplete="current-password" required="" id="id_password">
+            </div>
+            <button class="submit" type="submit">Log In</button>
+        </form>
+        <p class="sign-up-redirect">Don't have an account? <a href="{% url 'sign_up' %}" class="redirect-link">Sign Up</a></p>
+        <p class="sign-up-redirect">Forgot your password? <a href="{% url 'reset-password' %}" class="redirect-link">Just reset your password</a></p>
+    </div>
+    {% if form.non_field_errors %}
+        <div class="message-board">
+            {{ form.non_field_errors }}
+        </div>
+    {% endif%}
+{% endblock bodycontent %}

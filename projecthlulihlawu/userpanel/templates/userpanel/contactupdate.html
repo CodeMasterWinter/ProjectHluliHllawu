@@ -1,0 +1,66 @@
+{% extends 'userpanel\profile.html' %}
+
+{% block bodycontent %}
+    {% if usercontactform.errors %}
+        <div class="error-board">
+            <i class="fa-solid message-icon fa-circle-exclamation"></i>
+            {% for field in usercontactform %}
+                {% for error in field.errors %}
+                    <p> {{ error }} </p>
+                {% endfor %}
+            {% endfor %}
+        </div>
+    {% endif %}
+    {% if useremailform.errors %}
+        <div class="error-board">
+            <i class="fa-solid message-icon fa-circle-exclamation"></i>
+            {% for field in useremailform %}
+                {% for error in field.errors %}
+                    <p> {{ error }} </p>
+                {% endfor %}
+            {% endfor %}
+        </div>
+    {% endif %}
+    {% if messages %}
+        {% for message in messages %}
+            <div class="alert alert-{{ message.tags }}">
+                <i class="fa-solid message-icon fa-circle-info"></i>
+                {{ message }}
+            </div>
+        {% endfor %}
+    {% endif %}
+<div class="bodycontent">
+    <div class="sitebar">
+        <a href="{% url 'infoupdate' %}" class="site-header" id="user-header">Update User Info</a>
+        <a href="{% url 'contactupdate' %}" class="site-header active-header" id="contact-header">Update Contact Details</a>
+        <a href="#cart" class="site-header" id="cart-header">Manage cart</a>
+    </div>
+    <div class="pages">
+        <div class="page-content">
+            <p class="page-content-title">Contact Information</p>
+            <div class="page-content-block">
+                <div class="user-data-section">
+                    <form action="" method="post">
+                        {% csrf_token %}
+                        <hr class="content-divider">
+                        <div class="user-data-block">
+                            <label class="data-label" for="id_phone">Phone Number:</label>
+                            <input class="user-data" type="tel" name="phone" id="id_phone" value={{user.contact.phone}} required="">
+                        </div>
+                        <hr class="content-divider">
+                        <hr class="content-divider">
+                        <div class="user-data-block">
+                            <label class="data-label" for="id_email">Email:</label>
+                            <input class="user-data" type="email" name="email" id="id_email" value={{user.email}} required="">
+                        </div>
+                        <hr class="content-divider">
+                        <div class="data-update-section">
+                            <button type="submit" class="user-data-save">Update</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock bodycontent %}

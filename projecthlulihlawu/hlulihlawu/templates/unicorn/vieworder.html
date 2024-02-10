@@ -1,0 +1,47 @@
+<div class="cart-summary">
+    {% if messages %}
+    <ul class="messages">
+        {% for message in messages %}
+        <li {% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+        {% endfor %}
+    </ul>
+    {% endif %}
+    <div class="cart-nav-buttons">
+        <a href="{% url 'shop' %}" class="continue-shopping cart-nav-button">Continue Shopping</a>
+        <a href="{% url 'checkout-shipping' transaction_id %}" class="checkout cart-nav-button">Checkout</a>
+    </div>
+    <div class="cart-totals">
+        <p class="total-items">Items in cart: {{get_items}}</p>
+        <p class="total-items">Cart Total: <span>R{{ total }}</span></p>
+    </div>
+    <div class="cart-items">
+        {% if orderitems %}
+            {% for product in orderitems %}
+                <div class="cart-item">
+                    <div class="item-thumbnail">
+                        <img src="{{product.product.thumbnail.url}}" alt="" class="cart-item-thumbnail">
+                    </div>
+                    <p class="item-name item-detail">{{product.product}}</p>
+                    <p class="item-price item-detail">R{{product.product.price}}</p>
+                    <div class="quantity-count">
+                        <button class="btn" unicorn:click="add_item({{product.product.pk}})">+</button>
+                        <p class="item-quantity">{{product.quantity}}</p>
+                        <p class="btn" unicorn:click="remove_item({{product.product.pk}})">-</p>
+                    </div>
+                    <div class="item-totals">
+                        <p class="item-total-label">total: </p>
+                        <p class="item-total">R{{product.total_cost}}</p>
+                    </div>
+                    <button class="delete" unicorn:click="delete_item({{product.pk}})"><i class="fa-solid fa-trash"></i></button>
+                </div>
+            {% endfor %}
+            <button class="cart-nav-button delete_order" unicorn:click="delete_order()">Delete Order</button>      
+        {% else %}
+            <div class="empty-message">
+                <i class="fa-solid fa-cart-plus"></i>
+                <p class="empty-cart-message">Maybe do some shopping first?</p>
+                <p class="empty-cart-message">There's nothing here!</p>
+            </div>
+        {% endif %}
+    </div>
+</div>

@@ -1,0 +1,89 @@
+{% extends 'userpanel\profile.html' %}
+
+{% load unicorn %}
+
+{% block bodycontent %}
+    {% unicorn_scripts %}
+    {% csrf_token %}
+    <div class="bodycontent">
+        <div class="sitebar">
+            {% for header in profile_headers %}
+                {% if header.stylename == 'user' %}
+                    <a href="#{{header.stylename}}" class="site-header" id="{{header.stylename}}-header">{{ header.name }}</a>
+                {% elif header.stylename == 'cart' %}
+                    <a href="{% url 'cart' %}" class="site-header" id="{{header.stylename}}-header">{{ header.name }}</a>
+                {% else %}
+                    <a href="#{{header.stylename}}" class="site-header" id="{{header.stylename}}-header">{{ header.name }}</a>
+                {% endif %}
+            {% endfor %}
+        </div>
+        <div class="pages">
+            <div class="page-content" id="user">
+                <p class="page-content-title">User Information</p>
+                <div class="page-content-block">
+                    <div class="user-data-section">
+                        <hr class="content-divider">
+                        <div class="user-data-block">
+                            <label class="data-label user-data-label" for="first_name">First Name</label>
+                            <input type="text" class="user-data  user-data-data" id="first_name" placeholder={{user.first_name}} readonly>
+                        </div>
+                        <hr class="content-divider">
+                        <hr class="content-divider">
+                        <div class="user-data-block">
+                            <label class="data-label user-data-label" for="last_name">Last Name</label>
+                            <input type="text" class="user-data  user-data-data" id="last_name" placeholder={{user.last_name}} readonly>
+                        </div>
+                        <hr class="content-divider">
+                        <hr class="content-divider">
+                        <div class="user-data-block">
+                            <label class="data-label user-data-label" for="username">Username</label>
+                            <input type="text" class="user-data user-data-data" id="username" placeholder={{user.username}} readonly>
+                        </div>
+                        <hr class="content-divider">
+                    </div>
+                    <div class="data-update-section">
+                        <a href="{% url 'infoupdate' %}" class="user-data-save">Update</a>
+                    </div>
+                </div>
+            </div>
+            <div class="page-content" id="contact">
+                <p class="page-content-title">Contact Information</p>
+                <div class="page-content-block">
+                    <div class="user-data-section">
+                        <hr class="content-divider">
+                        <div class="user-data-block">
+                            <label class="data-label" for="id_phone">Phone Number:</label>
+                            <input class="user-data" type="tel" name="phone" id="id_phone" placeholder={{user.contact.phone}} readonly>
+                        </div>
+                        <hr class="content-divider">
+                        <hr class="content-divider">
+                        <div class="user-data-block">
+                            <label class="data-label" for="id_email">Email:</label>
+                            <input class="user-data" type="email" name="email" id="id_email" placeholder={{user.email}} readonly>
+                        </div>
+                        <hr class="content-divider">
+                    </div>
+                    <div class="data-update-section">
+                        <a href="{% url 'contactupdate' %}" class="user-data-save">Update</a>
+                    </div>
+                </div>
+            </div>
+            {% block components %}
+                {% unicorn 'user_data' user=request.user.pk %}
+            {% endblock components %}
+            <div class="page-content" id="account">
+                <p class="page-content-title">Your account</p>
+                <div class="page-content-block">
+                    <div class="user-data-section">
+                        <hr class="content-divider">
+                        <div class="user-data-block account-block">
+                            <a href="{% url 'reset-password' %}" class="user-data-save order-delete">Reset your password</a>
+                            <a href="{% url 'infoupdate' %}" class="user-data-save order-delete">Delete account</a>
+                        </div>
+                        <hr class="content-divider">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock bodycontent %}

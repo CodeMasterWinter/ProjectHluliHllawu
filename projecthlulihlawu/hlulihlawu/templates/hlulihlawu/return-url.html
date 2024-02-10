@@ -1,0 +1,9 @@
+{% extends 'hlulihlawu/base-redirect.html' %}
+
+{% block bodycontent %}
+{% csrf_token %}
+    <p class="redirect-title">
+        Congrats! you order is checked-out and being prepared!
+    </p>
+
+{% endblock bodycontent %}
